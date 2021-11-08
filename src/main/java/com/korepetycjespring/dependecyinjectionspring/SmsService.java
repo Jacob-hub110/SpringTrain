@@ -1,8 +1,10 @@
 package com.korepetycjespring.dependecyinjectionspring;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 @Service
+@Primary
 public class SmsService implements MessageService {
 
     @Override
