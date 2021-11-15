@@ -34,4 +34,17 @@ public class LibraryService {
         books.add(book);
         return book;
     }
+
+    public void deleteBook(Integer id){
+        Book book = this.getById(id);
+        this.books.remove(book);
+    }
+
+    public Book update(Book book) {
+        Book bookToChange = this.getById(book.getId());
+        bookToChange.setAuthor(book.getAuthor());
+        bookToChange.setTitle(book.getTitle());
+        bookToChange.setPublicationYear(book.getPublicationYear());
+        return bookToChange;
+    }
 }
