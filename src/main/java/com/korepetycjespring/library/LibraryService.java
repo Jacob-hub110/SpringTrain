@@ -1,5 +1,6 @@
 package com.korepetycjespring.library;
 
+import com.korepetycjespring.library.exceptions.InvalidBookException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -29,13 +30,24 @@ public class LibraryService {
         return books;
     }
 
+    //todo Jeśli dane wejsciowe nie zawieraja tytulu, autora lub roku publikacji nalezy wyrzucic wyjatek typu runtime InvalidBookException.
     public Book addBook(Book book) {
+        assertBook(book);
         book.setId(nextId++);
         books.add(book);
         return book;
     }
 
-    public void deleteBook(Integer id){
+    // assert czesto wykorzystywane slowo jak leci wyjatek
+    // null jest wyjatkowy do niego przyrownuje zawsze za pomoca ==
+    // | - wykona wszystkie warunki a || - optymalizuje
+    private void assertBook(Book book) {
+        if (book.getTitle() == null || book.getAuthor() == null || book.getPublicationYear() == null) {
+            throw new InvalidBookException("Ksiazka nie ma wszystkich informacji");
+        }
+    }
+
+    public void deleteBook(Integer id) {
         Book book = this.getById(id);
         this.books.remove(book);
     }
