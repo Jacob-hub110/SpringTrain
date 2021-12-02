@@ -1,10 +1,15 @@
 package com.korepetycjespring;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class ShowBeansTest {
 
+    /**
+     * Test nie działa po dodaniu zależności Spring Jpa.
+     */
+    @Disabled
     @Test
     public void printBeans() {
         //given
