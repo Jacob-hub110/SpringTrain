@@ -1,4 +1,4 @@
-package com.korepetycjespring.jpa_example.onetomany;
+package com.korepetycjespring.jpa_example.onetoone;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,25 +8,29 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "STUDENT")
+@Table(name = "ADDRESS")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
-public class Student {
-
+public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     private Long id;
 
-    @Column
-    private String firstName;
+    @Column(nullable = false)
+    private String city;
 
     @Column
-    private String lastName;
+    private String street;
 
-    @ManyToOne
-    @JoinColumn(name = "teacher_id")
-    private Teacher teacher;
+    @Column
+    private String buildingNumber;
+
+    @Column
+    private String flatNumber;
+
+    @OneToOne(mappedBy = "address")
+    private User user;
 }

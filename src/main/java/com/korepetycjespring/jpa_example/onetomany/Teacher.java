@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "TEACHER")
@@ -29,4 +30,7 @@ public class Teacher {
     @Column
     @Enumerated(EnumType.STRING)
     private SpecializationEnum specialization;
+
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.PERSIST)
+    private List<Student> students;
 }
